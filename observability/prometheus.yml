@@ -1,0 +1,48 @@
+# Emplacement: observability/prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'greenland-fabric'
+    environment: 'production'
+
+scrape_configs:
+  # Fabric Peers
+  - job_name: 'fabric-peers'
+    static_configs:
+      - targets:
+          - 'peer0.ministry.example.com:9443'
+          - 'peer0.notary.example.com:9443'
+          - 'peer0.bank.example.com:9443'
+          - 'peer0.municipality.example.com:9443'
+
+  # Fabric Orderer
+  - job_name: 'fabric-orderer'
+    static_configs:
+      - targets:
+          - 'orderer.example.com:8443'
+
+  # Backend API
+  - job_name: 'backend'
+    static_configs:
+      - targets:
+          - 'backend:9464'
+    metrics_path: '/metrics'
+
+  # Frontend
+  - job_name: 'frontend'
+    static_configs:
+      - targets:
+          - 'frontend:9464'
+
+  # PostgreSQL
+  - job_name: 'postgres'
+    static_configs:
+      - targets:
+          - 'db:9187'
+
+  # Node Exporter (system metrics)
+  - job_name: 'node'
+    static_configs:
+      - targets:
+          - 'node-exporter:9100'

@@ -1,0 +1,20 @@
+[
+    {
+        "name": "privateDocs",
+        "policy": "OR('MinistryMSP.member','NotaryMSP.member','BankMSP.member','MunicipalityMSP.member')",
+        "requiredPeerCount": 1,
+        "maxPeerCount": 3,
+        "blockToLive": 0,
+        "memberOnlyRead": true,
+        "memberOnlyWrite": true
+    },
+    {
+        "name": "privateFinance",
+        "policy": "OR('BankMSP.member','MinistryMSP.member')",
+        "requiredPeerCount": 1,
+        "maxPeerCount": 3,
+        "blockToLive": 0,
+        "memberOnlyRead": true,
+        "memberOnlyWrite": true
+    }
+]
